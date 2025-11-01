@@ -88,6 +88,13 @@ maddington_library/
 ```
 
 
+## Install Project Dependencies
+
+```bash
+cd /path/to/maddington_library
+composer install
+```
+
 ## Starting the Application
 
 ```bash
