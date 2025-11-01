@@ -1,0 +1,11 @@
+{
+    "require": {
+        "symfony/console": "^7.3",
+        "php-school/cli-menu": "^4.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/"
+        }
+    }
+}

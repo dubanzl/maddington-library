@@ -1,0 +1,18 @@
+[
+    {
+        "memberId": 1,
+        "memberName": "duban",
+        "email": "duban",
+        "phone": "duban",
+        "membershipDate": "2025-11-01",
+        "borrowedResources": []
+    },
+    {
+        "memberId": 2,
+        "memberName": "Andres",
+        "email": "andreszl.devcode@gmail.com",
+        "phone": "323",
+        "membershipDate": "2025-11-01",
+        "borrowedResources": []
+    }
+]
