@@ -105,8 +105,3 @@ composer install
 
 - **php-school/cli-menu**: Interactive CLI menus
 - **symfony/console**: Console output styling and formatting
-
-
-## Github repository
-
-::github{repo="dubanzl/maddington-library"}
