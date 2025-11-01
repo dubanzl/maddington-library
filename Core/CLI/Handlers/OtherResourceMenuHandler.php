@@ -28,13 +28,13 @@ class OtherResourceMenuHandler
             ConsoleUI::warning(text: "No resources available.");
         } else {
             $rows = array_map(
-                fn($r): array => [
+                callback: fn($r): array => [
                     $r['resourceId'],
                     $r['resourceCategory'],
                     $r['res_brand'],
                     $r['addedDate']
                 ],
-                $resources
+                array: $resources
             );
             ConsoleUI::table(headers: ['ID', 'Description', 'Brand', 'Added Date'], rows: $rows);
         }
@@ -115,7 +115,7 @@ class OtherResourceMenuHandler
             default: "no"
         );
 
-        if (strtolower($confirm) === 'yes') {
+        if (strtolower(string: $confirm) === 'yes') {
             $success = OtherResourceController::deleteResource(id: $id);
 
             if ($success) {
@@ -134,13 +134,13 @@ class OtherResourceMenuHandler
     private static function displayResourcesTable(array $resources): void
     {
         $rows = array_map(
-            fn($r): array => [
+            callback: fn($r): array => [
                 $r['resourceId'],
                 $r['resourceCategory'],
                 $r['res_brand'],
                 $r['addedDate']
             ],
-            $resources
+            array: $resources
         );
         ConsoleUI::table(headers: ['ID', 'Description', 'Brand', 'Added Date'], rows: $rows);
     }

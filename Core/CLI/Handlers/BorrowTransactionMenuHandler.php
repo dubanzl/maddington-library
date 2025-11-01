@@ -12,7 +12,6 @@ class BorrowTransactionMenuHandler
     {
         ConsoleUI::title(title: "Borrow Resource");
 
-        // Show available members
         $members = MemberController::listMembers();
         if (empty($members)) {
             ConsoleUI::warning(text: "No members registered. Please add members first.");
@@ -22,20 +21,19 @@ class BorrowTransactionMenuHandler
         }
 
         $memberRows = array_map(
-            fn($m): array => [$m['memberId'], $m['memberName'], $m['email']],
-            $members
+            callback: fn($m): array => [$m['memberId'], $m['memberName'], $m['email']],
+            array: $members
         );
         ConsoleUI::table(headers: ['ID', 'Name', 'Email'], rows: $memberRows);
 
         $memberId = ConsoleUI::ask(question: "Enter Member ID");
 
-        // Show available books
         echo "\n";
         $books = BookController::listBooks();
         if (!empty($books)) {
             $bookRows = array_map(
-                fn($b): array => [$b['resourceId'], $b['name'], $b['author']['authorName']],
-                $books
+                callback: fn($b): array => [$b['resourceId'], $b['name'], $b['author']['authorName']],
+                array: $books
             );
             ConsoleUI::table(headers: ['ID', 'Book', 'Author'], rows: $bookRows);
         }
@@ -137,7 +135,7 @@ class BorrowTransactionMenuHandler
     private static function displayTransactionsTable(array $transactions): void
     {
         $rows = array_map(
-            fn($t): array => [
+            callback: fn($t): array => [
                 $t['transactionId'],
                 $t['memberId'],
                 $t['resourceId'],
@@ -145,7 +143,7 @@ class BorrowTransactionMenuHandler
                 $t['dueDate'],
                 $t['returnDate'] ?? 'Not Returned'
             ],
-            $transactions
+            array: $transactions
         );
         ConsoleUI::table(
             headers: ['TX ID', 'Member ID', 'Resource ID', 'Borrow Date', 'Due Date', 'Return Date'],

@@ -38,13 +38,13 @@ class BookMenuHandler
             ConsoleUI::warning(text: "No books available.");
         } else {
             $rows = array_map(
-                fn($b): array => [
+                callback: fn($b): array => [
                     $b['resourceId'],
                     $b['name'],
                     $b['author']['authorName'],
                     $b['year']
                 ],
-                $books
+                array: $books
             );
             ConsoleUI::table(headers: ['ID', 'Book', 'Author', 'Year'], rows: $rows);
         }
@@ -131,7 +131,7 @@ class BookMenuHandler
             default: "no"
         );
 
-        if (strtolower($confirm) === 'yes') {
+        if (strtolower(string: $confirm) === 'yes') {
             $success = BookController::deleteBook(id: $id);
 
             if ($success) {
@@ -150,13 +150,13 @@ class BookMenuHandler
     private static function displayBooksTable(array $books): void
     {
         $rows = array_map(
-            fn($b): array => [
+            callback: fn($b): array => [
                 $b['resourceId'],
                 $b['name'],
                 $b['author']['authorName'],
                 $b['year']
             ],
-            $books
+            array: $books
         );
         ConsoleUI::table(headers: ['ID', 'Book', 'Author', 'Year'], rows: $rows);
     }

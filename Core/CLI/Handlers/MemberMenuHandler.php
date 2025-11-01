@@ -29,12 +29,12 @@ class MemberMenuHandler
             ConsoleUI::warning(text: "No members found.");
         } else {
             $rows = array_map(
-                fn($m): array => [
+                callback: fn($m): array => [
                     $m['memberId'],
                     $m['memberName'],
                     $m['email']
                 ],
-                $members
+                array: $members
             );
             ConsoleUI::table(headers: ['ID', 'Name', 'Email'], rows: $rows);
         }

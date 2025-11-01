@@ -15,12 +15,4 @@ Class LibraryResource {
       $this->addedDate = $addedDate;
       $this->availability = $availability;
    }
-
-    public function markAsBorrowed(): void {
-        $this->availability = false;
-    }
-
-    public function markAsReturned(): void {
-        $this->availability = true;
-    }
 }

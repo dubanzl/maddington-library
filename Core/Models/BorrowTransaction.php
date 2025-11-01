@@ -17,8 +17,4 @@ class BorrowTransaction {
         $this->dueDate = $dueDate;
         $this->returnDate = $returnDate;
     }
-
-    public function markAsReturned(): void {
-        $this->returnDate = date(format: 'Y-m-d');
-    }
 }
