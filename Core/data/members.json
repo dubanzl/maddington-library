@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "memberId": 1,
+        "memberName": "Basanta",
+        "email": "basanta@gmail.com",
+        "phone": "2323",
+        "membershipDate": "2025-11-01",
+        "borrowedResources": []
+    },
+    {
+        "memberId": 2,
+        "memberName": "duban",
+        "email": "duban.devcode@gmail.com",
+        "phone": "123",
+        "membershipDate": "2025-11-01",
+        "borrowedResources": []
+    }
+]

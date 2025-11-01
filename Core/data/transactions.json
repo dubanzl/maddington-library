@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "transactionId": 1,
+        "memberId": "1",
+        "resourceId": "1",
+        "borrowDate": "2025-11-01",
+        "dueDate": "2025-11-15",
+        "returnDate": "2025-11-01"
+    },
+    {
+        "transactionId": 2,
+        "memberId": "1",
+        "resourceId": "1",
+        "borrowDate": "2025-11-01",
+        "dueDate": "2025-11-15",
+        "returnDate": null
+    }
+]

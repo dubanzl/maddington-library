@@ -68,7 +68,7 @@ class BorrowTransactionRepository
     {
         $transactions = self::findAll();
         $overdue = [];
-        $today = date('Y-m-d');
+        $today = date(format: 'Y-m-d');
         foreach ($transactions as $transaction) {
             if ($transaction['returnDate'] === null && $transaction['dueDate'] < $today) {
                 $overdue[] = $transaction;
