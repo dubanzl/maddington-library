@@ -24,7 +24,7 @@ class DataStoreTest extends TestCase
     public function testReadReturnsEmptyArrayForNonExistentFile(): void
     {
         $result = DataStore::read(path: $this->testFile);
-        $this->assertEquals([], $result);
+        $this->assertEquals(expected: [], actual: $result);
     }
 
     public function testWriteCreatesJsonFile(): void
@@ -57,7 +57,7 @@ class DataStoreTest extends TestCase
             ]
         ];
 
-        file_put_contents(filename: $this->testFile, data: json_encode($data));
+        file_put_contents(filename: $this->testFile, data: json_encode(value: $data));
         $result = DataStore::read(path: $this->testFile);
 
         $this->assertIsArray(actual: $result);

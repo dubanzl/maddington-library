@@ -26,12 +26,12 @@ class BookTest extends TestCase
             author: $author
         );
 
-        $this->assertEquals(1, $book->resourceId);
-        $this->assertEquals('Test Book', $book->name);
-        $this->assertEquals('978-1234567890', $book->isbn);
-        $this->assertEquals('Test Publisher', $book->publisher);
-        $this->assertEquals('2025', $book->year);
-        $this->assertEquals('John Doe', $book->author->authorName);
+        $this->assertEquals(expected: 1, actual: $book->resourceId);
+        $this->assertEquals(expected: 'Test Book', actual: $book->name);
+        $this->assertEquals(expected: '978-1234567890', actual: $book->isbn);
+        $this->assertEquals(expected: 'Test Publisher', actual: $book->publisher);
+        $this->assertEquals(expected: '2025', actual: $book->year);
+        $this->assertEquals(expected: 'John Doe', actual: $book->author->authorName);
     }
 
     public function testBookHasAvailability(): void
@@ -53,7 +53,7 @@ class BookTest extends TestCase
             author: $author
         );
 
-        $this->assertTrue($book->availability);
+        $this->assertTrue(condition: $book->availability);
     }
 
     public function testBookAvailabilityCanBeChanged(): void
@@ -75,16 +75,13 @@ class BookTest extends TestCase
             author: $author
         );
 
-        // Test availability is initially true
-        $this->assertTrue($book->availability);
+        $this->assertTrue(condition: $book->availability);
         
-        // Manually change availability (as done in the system)
         $book->availability = false;
-        $this->assertFalse($book->availability);
+        $this->assertFalse(condition: $book->availability);
         
-        // Change it back
         $book->availability = true;
-        $this->assertTrue($book->availability);
+        $this->assertTrue(condition: $book->availability);
     }
 }
 
