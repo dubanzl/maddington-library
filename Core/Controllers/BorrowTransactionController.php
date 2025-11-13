@@ -64,7 +64,6 @@ class BorrowTransactionController
             return ['success' => false, 'message' => 'Resource already returned!'];
         }
 
-        // Update transaction
         $borrowTransaction = new BorrowTransaction(
             transactionId: $transaction['transactionId'],
             memberId: $transaction['memberId'],
