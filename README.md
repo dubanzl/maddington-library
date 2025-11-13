@@ -1,6 +1,6 @@
-![Library Management System](./architecture/cover.gif)
+![Library Management System](./architecture/demo.gif)
 
-## 🏗️ Architecture Overview
+## 🏗️ Architecture Overviews
 
 The system follows a **layered architecture** with clear separation of concerns:
 
@@ -41,9 +41,16 @@ The system follows a **layered architecture** with clear separation of concerns:
 maddington_library/
 │
 ├── app.php                          # Application entry point
-├── composer.json                     # Dependencies configuration
+├── composer.json                    # Dependencies configuration
+├── composer.lock                    # Locked dependency versions
+├── phpunit.xml                      # PHPUnit configuration
+├── README.md                        # Project documentation
 │
-├── Core/
+├── architecture/                    # Architecture diagrams
+│   ├── cover.gif
+│   └── POP_Diagram.png
+│
+├── Core/                            # Application core
 │   │
 │   ├── CLI/                         # Presentation Layer
 │   │   ├── Menu.php                 # Main menu navigation
@@ -82,7 +89,22 @@ maddington_library/
 │       ├── otherResources.json
 │       └── transactions.json
 │
-└── vendor/                          # Composer dependencies
+├── tests/                           # Test Suite
+│   ├── Unit/                        # Unit Tests (isolated)
+│   │   ├── Models/
+│   │   │   ├── BookTest.php
+│   │   │   ├── MemberTest.php
+│   │   │   └── BorrowTransactionTest.php
+│   │   └── Repositories/
+│   │       └── DataStoreTest.php
+│   │
+│   └── Integration/                 # Integration Tests (full workflow)
+│       └── Controllers/
+│           └── BookControllerTest.php
+│
+└── vendor/                          # Composer dependencies (auto-generated)
+    ├── autoload.php                 # Composer autoloader
+    ├── phpunit/phpunit/             # PHPUnit testing framework
     ├── php-school/cli-menu/         # Interactive CLI menus
     └── symfony/console/             # Console output styling
 ```
@@ -94,6 +116,53 @@ maddington_library/
 cd /path/to/maddington_library
 composer install
 ```
+
+---
+
+## 🧪 Running Tests
+
+### Install PHPUnit
+
+PHPUnit is included in the `composer.json` as a dev dependency. Install it with:
+
+```bash
+composer install --dev
+```
+
+Or if you already installed dependencies:
+
+```bash
+composer update
+```
+
+### Run All Tests
+
+Or using Composer:
+
+```bash
+composer test
+
+```
+
+Then open `coverage/index.html` in your browser.
+
+### Test Structure
+
+```
+tests/
+├── Unit/                          # Unit tests (isolated tests)
+│   ├── Models/
+│   │   ├── BookTest.php
+│   │   ├── MemberTest.php
+│   │   └── BorrowTransactionTest.php
+│   └── Repositories/
+│       └── DataStoreTest.php
+│
+└── Integration/                   # Integration tests (full workflow)
+    └── Controllers/
+        └── BookControllerTest.php
+```
+---
 
 ## Starting the Application
 

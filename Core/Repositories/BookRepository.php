@@ -1,8 +1,6 @@
 <?php
 namespace Core\Repositories;
 
-use Core\Models\Book;
-
 class BookRepository {
     private static $file = __DIR__ . '/../data/books.json';
 
@@ -43,7 +41,7 @@ class BookRepository {
         foreach ($books as $index => $book) {
             if ($book['resourceId'] == $id) {
                 unset($books[$index]);
-                DataStore::write(path: self::$file, data: array_values($books));
+                DataStore::write(path: self::$file, data: array_values(array: $books));
                 return true;
             }
         }

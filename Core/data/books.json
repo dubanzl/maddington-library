@@ -1,21 +1,5 @@
 [
     {
-        "resourceId": 1,
-        "resourceCategory": "Book",
-        "addedDate": "2025-11-01",
-        "availability": true,
-        "name": "C#",
-        "isbn": "122",
-        "publisher": "2010",
-        "year": "2010",
-        "author": {
-            "authorId": "6905e99742be8",
-            "authorName": "Duban",
-            "nationality": "Unknown",
-            "biography": ""
-        }
-    },
-    {
         "resourceId": 2,
         "resourceCategory": "Book",
         "addedDate": "2025-11-01",
