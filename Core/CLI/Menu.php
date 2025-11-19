@@ -1,8 +1,6 @@
 <?php
 namespace Core\CLI;
 
-use PhpSchool\CliMenu\Builder\CliMenuBuilder;
-use PhpSchool\CliMenu\CliMenu;
 use Core\CLI\Handlers\BookMenuHandler;
 use Core\CLI\Handlers\MemberMenuHandler;
 use Core\CLI\Handlers\OtherResourceMenuHandler;
@@ -10,154 +8,152 @@ use Core\CLI\Handlers\BorrowTransactionMenuHandler;
 
 class Menu {
     public static function run(): void {
-        $menu = (new CliMenuBuilder)
-            ->setTitle(title: 'Library Management System')
-            ->addItem(text: 'Books Menu', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                Menu::booksMenu();
-            })
-            ->addItem(text: 'Members Menu', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                Menu::membersMenu();
-            })
-            ->addItem(text: 'Other Resources Menu', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                Menu::otherResourcesMenu();
-            })
-            ->addItem(text: 'Borrow/Return Menu', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                Menu::borrowTransactionMenu();
-            })
-            ->addLineBreak(breakChar: '-')
-            ->build();
+        ConsoleUI::title('Library Management System');
+        
+        $choice = ConsoleUI::choice(
+            question: 'Select an option',
+            choices: [
+                'Books Menu',
+                'Members Menu',
+                'Other Resources Menu',
+                'Borrow/Return Menu',
+                'Exit'
+            ]
+        );
 
-        $menu->open();
+        match ($choice) {
+            'Books Menu' => Menu::booksMenu(),
+            'Members Menu' => Menu::membersMenu(),
+            'Other Resources Menu' => Menu::otherResourcesMenu(),
+            'Borrow/Return Menu' => Menu::borrowTransactionMenu(),
+            'Exit' => ConsoleUI::info(text: 'Goodbye!'),
+            default => Menu::run()
+        };
     }
 
     public static function booksMenu(): void {
-        $menu = (new CliMenuBuilder)
-            ->setTitle(title: 'Books Management')
-            ->addItem(text: 'Add Book', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                BookMenuHandler::add();
-                Menu::booksMenu();
-            })
-            ->addItem(text: 'List Books', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                BookMenuHandler::list();
-                Menu::booksMenu();
-            })
-            ->addItem(text: 'Edit Book', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                BookMenuHandler::edit();
-                Menu::booksMenu();
-            })
-            ->addItem(text: 'Delete Book', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                BookMenuHandler::delete();
-                Menu::booksMenu();
-            })
-            ->addLineBreak(breakChar: '-')
-            ->addItem(text: 'Back to Main Menu', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                Menu::run();
-            })
-            ->build();
+        ConsoleUI::title(title: 'Books Management');
+        
+        $choice = ConsoleUI::choice(
+            question: 'Select an option',
+            choices: [
+                'Add Book',
+                'List Books',
+                'Edit Book',
+                'Delete Book',
+                'Back to Main Menu'
+            ]
+        );
 
-        $menu->open();
+        match ($choice) {
+            'Add Book' => BookMenuHandler::add(),
+            'List Books' => BookMenuHandler::list(),
+            'Edit Book' => BookMenuHandler::edit(),
+            'Delete Book' => BookMenuHandler::delete(),
+            'Back to Main Menu' => null,
+            default => null
+        };
+
+        if ($choice !== 'Back to Main Menu') {
+            ConsoleUI::info('Press Enter to continue...');
+            fgets(STDIN);
+            Menu::booksMenu();
+        } else {
+            Menu::run();
+        }
     }
 
     public static function membersMenu(): void {
-        $menu = (new CliMenuBuilder)
-            ->setTitle(title: 'Members Management')
-            ->addItem(text: 'Add Member', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                MemberMenuHandler::add();
-                Menu::membersMenu();
-            })
-            ->addItem(text: 'List Members', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                MemberMenuHandler::list();
-                Menu::membersMenu();
-            })
-            ->addLineBreak(breakChar: '-')
-            ->addItem(text: 'Back to Main Menu', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                Menu::run();
-            })
-            ->build();
+        ConsoleUI::title('Members Management');
+        
+        $choice = ConsoleUI::choice(
+            question: 'Select an option',
+            choices: [
+                'Add Member',
+                'List Members',
+                'Back to Main Menu'
+            ]
+        );
 
-        $menu->open();
+        match ($choice) {
+            'Add Member' => MemberMenuHandler::add(),
+            'List Members' => MemberMenuHandler::list(),
+            'Back to Main Menu' => null,
+            default => null
+        };
+
+        if ($choice !== 'Back to Main Menu') {
+            ConsoleUI::info('Press Enter to continue...');
+            fgets(STDIN);
+            Menu::membersMenu();
+        } else {
+            Menu::run();
+        }
     }
 
     public static function otherResourcesMenu(): void {
-        $menu = (new CliMenuBuilder)
-            ->setTitle(title: 'Other Resources Management')
-            ->addItem(text: 'Add Resource', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                OtherResourceMenuHandler::add();
-                Menu::otherResourcesMenu();
-            })
-            ->addItem(text: 'List Resources', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                OtherResourceMenuHandler::list();
-                Menu::otherResourcesMenu();
-            })
-            ->addItem(text: 'Edit Resource', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                OtherResourceMenuHandler::edit();
-                Menu::otherResourcesMenu();
-            })
-            ->addItem(text: 'Delete Resource', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                OtherResourceMenuHandler::delete();
-                Menu::otherResourcesMenu();
-            })
-            ->addLineBreak(breakChar: '-')
-            ->addItem(text: 'Back to Main Menu', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                Menu::run();
-            })
-            ->build();
+        ConsoleUI::title('Other Resources Management');
+        
+        $choice = ConsoleUI::choice(
+            question: 'Select an option',
+            choices: [
+                'Add Resource',
+                'List Resources',
+                'Edit Resource',
+                'Delete Resource',
+                'Back to Main Menu'
+            ]
+        );
 
-        $menu->open();
+        match ($choice) {
+            'Add Resource' => OtherResourceMenuHandler::add(),
+            'List Resources' => OtherResourceMenuHandler::list(),
+            'Edit Resource' => OtherResourceMenuHandler::edit(),
+            'Delete Resource' => OtherResourceMenuHandler::delete(),
+            'Back to Main Menu' => null,
+            default => null
+        };
+
+        if ($choice !== 'Back to Main Menu') {
+            ConsoleUI::info('Press Enter to continue...');
+            fgets(STDIN);
+            Menu::otherResourcesMenu();
+        } else {
+            Menu::run();
+        }
     }
 
     public static function borrowTransactionMenu(): void {
-        $menu = (new CliMenuBuilder)
-            ->setTitle(title: 'Borrow/Return Management')
-            ->addItem(text: 'Borrow Resource', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                BorrowTransactionMenuHandler::borrowResource();
-                Menu::borrowTransactionMenu();
-            })
-            ->addItem(text: 'Return Resource', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                BorrowTransactionMenuHandler::returnResource();
-                Menu::borrowTransactionMenu();
-            })
-            ->addItem(text: 'All Transactions', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                BorrowTransactionMenuHandler::listAllTransactions();
-                Menu::borrowTransactionMenu();
-            })
-            ->addItem(text: 'Active Borrowings', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                BorrowTransactionMenuHandler::listActiveTransactions();
-                Menu::borrowTransactionMenu();
-            })
-            ->addItem(text: 'Overdue Transactions', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                BorrowTransactionMenuHandler::listOverdueTransactions();
-                Menu::borrowTransactionMenu();
-            })
-            ->addLineBreak(breakChar: '-')
-            ->addItem(text: 'Back to Main Menu', itemCallable: function (CliMenu $menu): void {
-                $menu->close();
-                Menu::run();
-            })
-            ->build();
+        ConsoleUI::title('Borrow/Return Management');
+        
+        $choice = ConsoleUI::choice(
+            question: 'Select an option',
+            choices: [
+                'Borrow Resource',
+                'Return Resource',
+                'All Transactions',
+                'Active Borrowings',
+                'Overdue Transactions',
+                'Back to Main Menu'
+            ]
+        );
 
-        $menu->open();
+        match ($choice) {
+            'Borrow Resource' => BorrowTransactionMenuHandler::borrowResource(),
+            'Return Resource' => BorrowTransactionMenuHandler::returnResource(),
+            'All Transactions' => BorrowTransactionMenuHandler::listAllTransactions(),
+            'Active Borrowings' => BorrowTransactionMenuHandler::listActiveTransactions(),
+            'Overdue Transactions' => BorrowTransactionMenuHandler::listOverdueTransactions(),
+            'Back to Main Menu' => null,
+            default => null
+        };
+
+        if ($choice !== 'Back to Main Menu') {
+            ConsoleUI::info('Press Enter to continue...');
+            fgets(STDIN);
+            Menu::borrowTransactionMenu();
+        } else {
+            Menu::run();
+        }
     }
 }

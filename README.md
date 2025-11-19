@@ -119,6 +119,50 @@ composer install
 
 ---
 
+## 🐳 Docker Setup
+
+### Prerequisites
+
+- Docker installed on your system
+- Docker Compose (optional, but recommended)
+
+### Quick Start with Docker
+
+#### Step 1: Build the Docker Image
+
+```bash
+# Build the Docker image
+docker build -t maddington-library .
+
+# Or with Docker Compose (recommended)
+docker-compose build
+```
+
+#### Step 2: Access the Application (Interactive Console)
+
+**This is a console application, so you access it directly in your terminal:**
+
+```bash
+# Method 1: Docker Compose (Recommended)
+docker-compose up
+
+# Method 2: Docker directly
+docker run -it --rm maddington-library
+
+#### Important Notes for Console App:
+
+```bash
+# Start in background
+docker-compose up -d
+
+# Attach to running container
+docker attach maddington_library
+
+# Or execute the app
+docker exec -it maddington_library php app.php
+```
+---
+
 ## 🧪 Running Tests
 
 ### Install PHPUnit

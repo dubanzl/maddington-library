@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  library-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: maddington_library
+    volumes:
+      # Mount data directory to persist data
+      - ./Core/data:/var/www/html/Core/data
+      # Mount source code for development (optional)
+      - ./Core:/var/www/html/Core
+      - ./app.php:/var/www/html/app.php
+    stdin_open: true
+    tty: true
+    # Override command to keep container running
+    command: php app.php
+

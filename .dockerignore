@@ -1,0 +1,12 @@
+vendor/
+.git/
+.gitignore
+.phpunit.result.cache
+coverage/
+architecture/
+node_modules/
+.DS_Store
+*.log
+*.md
+!README.md
+

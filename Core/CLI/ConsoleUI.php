@@ -2,8 +2,10 @@
 
 namespace Core\CLI;
 
+use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 class ConsoleUI
@@ -23,6 +25,21 @@ class ConsoleUI
     public static function ask(string $question, ?string $default = null): mixed
     {
         return self::getIO()->ask(question: $question, default: $default);
+    }
+
+    public static function choice(string $question, array $choices, ?string $default = null): string
+    {
+        $input = new ArgvInput();
+        $output = new ConsoleOutput();
+        $io = new SymfonyStyle($input, $output);
+        $helper = new QuestionHelper();
+        $questionObj = new ChoiceQuestion(
+            question: $question . ' ',
+            choices: $choices,
+            default: $default ?? 0
+        );
+        $questionObj->setErrorMessage('Choice %s is invalid.');
+        return $helper->ask($input, $output, $questionObj);
     }
 
     public static function progressDemo(string $message, int $steps = 5): void

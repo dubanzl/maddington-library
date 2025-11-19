@@ -1,7 +1,6 @@
 {
     "require": {
-        "symfony/console": "^7.3",
-        "php-school/cli-menu": "^4.4"
+        "symfony/console": "^7.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^10.5"

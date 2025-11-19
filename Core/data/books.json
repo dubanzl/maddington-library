@@ -14,5 +14,21 @@
             "nationality": "Unknown",
             "biography": ""
         }
+    },
+    {
+        "resourceId": 2,
+        "resourceCategory": "Book",
+        "addedDate": "2025-11-14",
+        "availability": true,
+        "name": "Duban",
+        "isbn": "2423542",
+        "publisher": "duban",
+        "year": "2029",
+        "author": {
+            "authorId": "6916e4cf2cbfb",
+            "authorName": "Rofrigo",
+            "nationality": "Unknown",
+            "biography": ""
+        }
     }
 ]
